@@ -5,8 +5,13 @@ import three from '../assets/simple_dice/three.svg'
 import four from '../assets/simple_dice/four.svg'
 import five from '../assets/simple_dice/five.svg'
 import six from '../assets/simple_dice/six.svg'
+import dicesbig from '../assets/dicesbig.png'
+import logo from '../assets/logo.jpg'
+import { Link } from 'react-router-dom'
 
 function Home() {
+
+    const [mainpage, setMainpage] = useState(true)
 
     const [mode, setMode] = useState('hard')
 
@@ -40,7 +45,7 @@ function Home() {
         }
 
         setIsRolling(true)
-        setTimeout(() => setIsRolling(false), 500)
+        setTimeout(() => setIsRolling(false), 300)
         
         const randomnumber1 = Math.floor(Math.random() * 6) + 1;
         console.log(`random1 number is ${randomnumber1}`)
@@ -88,8 +93,33 @@ function Home() {
 
 
   return (
+
     <>
-        <div className="w-screen main flex flex-col gap-[50px]">
+        {mainpage && <div className='mainpage flex items-center justify-center w-screen mt-24'>
+
+            <div className="mainleft w-[30%]">
+                    <img src={logo} alt="" width='300px' className='rounded-[50%]' />
+            </div>
+
+            <div className="mainright w-[50%] flex flex-col justify-center items-center">
+                    <h1 className='font-extrabold text-7xl mb-10'>DICE GAME</h1>
+                    <button onClick={ () => {setMainpage(!mainpage)}} className='bg-black text-white pt-2 pb-2 pr-7 pl-7 rounded-lg'>Get Started</button>
+
+                    <div className='mainrule bg-[#FBF1F1] p-5 mb-7 mt-5'>
+                        <h1 className='font-extrabold text-[15px] m-4'>How to play dice game</h1>
+                        <ul className='list-disc'>
+                            <li className='ml-4 mr-5 mt-[2px] text-[10px] font-bold '>Select any number</li>
+                            <li className='ml-4 mr-5 mt-[2px] text-[10px] font-bold'>Click on dice image</li>
+                            <li className='ml-4 mr-5 mt-[2px] text-[10px] font-bold'>After click on  dice  if selected number is equal to dice number you will get same point as dice</li>
+                            <li className='ml-4 mr-5 mt-[2px] text-[10px] font-bold'>If you get wrong guess then  2 point will be dedcuted</li>
+                        </ul>
+                    </div>
+            </div>
+
+        </div>}
+
+
+        {mainpage || <div className="w-screen main flex flex-col gap-[50px]">
 
             <div className='hometop flex justify-around items-center'>
 
@@ -153,7 +183,7 @@ function Home() {
 
             </div>
 
-        </div>
+        </div>}
     </>
   )
 }

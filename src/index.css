@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media only screen and (max-width: 816px){
+
+    .mainpage{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mainright{
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mainleft{
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+}
+
+@media only screen and (max-width: 502px){
+
+    .mainrule{
+        display: none;
+    }
+
+    .mainright > h1{
+        font-size: 50px ;
+    }
+
+
+}
+
+@media only screen and (max-width: 290px){
+
+    
+    .mainright > h1{
+        font-size: 40px ;
+    }
+
+}
+
+@media only screen and (max-width: 488px){
+
+    .hometop{
+        flex-direction: column;
+    }
+
+    .homeboxes{
+        flex-wrap: wrap;
+    }
+    
+
+}

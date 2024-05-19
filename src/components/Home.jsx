@@ -13,7 +13,7 @@ function Home() {
 
     const [mainpage, setMainpage] = useState(true)
 
-    const [mode, setMode] = useState('hard')
+    const [mode, setMode] = useState('easy')
 
     const [showrules, setShowrules] = useState(false)
 
@@ -81,7 +81,8 @@ function Home() {
             if( score + dienumber > highestscore)
             {
                 // setHighestscore(score + dienumber)
-                localStorage.setItem('highestscore', score + dienumber)
+                // localStorage.setItem('highestscore', score + dienumber)
+                localStorage.setItem('highestscore', (score + dienumber).toString());
             } 
 
             setMessage(`+${dienumber}`);
@@ -102,7 +103,8 @@ function Home() {
     useEffect(() => {
         if(localStorage.getItem('highestscore'))
         {
-            setHighestscore(localStorage.getItem('highestscore'))
+            // setHighestscore(localStorage.getItem('highestscore'))
+            setHighestscore(parseInt(localStorage.getItem('highestscore')));
         }
     }, [score])
 

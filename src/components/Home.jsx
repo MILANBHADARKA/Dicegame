@@ -21,6 +21,7 @@ function Home() {
     const [dienumber, setDienumber] = useState(0)
 
     const [score, setScore] = useState(0)
+    const [highestscore, setHighestscore] = useState(0)
 
     const [isRolling, setIsRolling] = useState(false)
     const [message, setMessage] = useState('');
@@ -75,12 +76,20 @@ function Home() {
     useEffect(() => {
         if(number == dienumber)
         {
-            setTimeout(() => setScore(score + dienumber), 600); 
+            setTimeout(() => setScore(score + dienumber), 600);
+
+            if( score + dienumber > highestscore)
+            {
+                // setHighestscore(score + dienumber)
+                localStorage.setItem('highestscore', score + dienumber)
+            } 
+
             setMessage(`+${dienumber}`);
         }
         else
         {
             setTimeout(() => setScore(score - 2), 600);
+
             setMessage('-2');
         }
 
@@ -89,6 +98,13 @@ function Home() {
         setNumber(0)
 
     }, [dienumber])
+
+    useEffect(() => {
+        if(localStorage.getItem('highestscore'))
+        {
+            setHighestscore(localStorage.getItem('highestscore'))
+        }
+    }, [score])
 
 
 
@@ -123,11 +139,17 @@ function Home() {
 
             <div className='hometop flex justify-around items-center'>
 
-                <div className="score">
-                    <h1>Total score</h1>
-                    <div className='flex justify-center items-center'>
-                        <h1 className='text-center font-bold text-5xl'>{score}</h1>
-                        <div className="message">{message}</div>
+                <div className='scorebox flex gap-9'>
+                    <div className="score">
+                        <h1>Total score</h1>
+                        <div className='flex justify-center items-center'>
+                            <h1 className='text-center font-bold text-5xl'>{score}</h1>
+                            <div className="message">{message}</div>
+                        </div>
+                    </div>
+                    <div className="highestscore">
+                        <h1>Highest score</h1>
+                        <h1 className='text-center font-bold text-5xl'>{highestscore}</h1>
                     </div>
                 </div>
 
@@ -156,8 +178,8 @@ function Home() {
 
                 </div>
 
-                <div className="middle">
-                    <div onClick={handledies} className={`dice flex justify-center items-center gap-5 ${isRolling ? 'animate-spin-slow' : ''} `}>
+                <div onClick={handledies} className="middle">
+                    <div className={`dice flex justify-center items-center gap-5 ${isRolling ? 'animate-spin-slow' : ''} `}>
                         <img src={dienumber == 1 ? one : dienumber == 2 ? two : dienumber == 3 ? three : dienumber == 4 ? four : dienumber == 5 ? five : six} alt="" width='100px' />
                     </div>
                 </div>

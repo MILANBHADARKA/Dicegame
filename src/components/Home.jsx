@@ -49,13 +49,13 @@ function Home() {
         setTimeout(() => setIsRolling(false), 300)
         
         const randomnumber1 = Math.floor(Math.random() * 6) + 1;
-        console.log(`random1 number is ${randomnumber1}`)
+        // console.log(`random1 number is ${randomnumber1}`)
 
 
         if(mode == 'easy')
         {
             const randomnumber2 = Math.floor(Math.random() * 4) + 1;
-            console.log(`random2 number is ${randomnumber2}`)
+            // console.log(`random2 number is ${randomnumber2}`)
 
             if(randomnumber2 == 1 || randomnumber2 == 4)     //for easy win of user
             {
